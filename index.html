@@ -1,178 +1,29 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>NyakoのWindowsⅡk</title>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-  <div class="win">
-    <!-- 桌面 -->
-    <div class="zhuomian">
-
-      <!-- 第一列桌面图标 -->
-      <div class="zhuomianCol">
-        <!-- 快捷方式 -->
-        <div class="kuaijiefangshi">
-          <div class="kuaijiefangshiIcon"><img height="60px" width="60px" src="Icons/imageres_110.ico"/></div>
-          <div class="kuaijiefangshiName"><span>我的电脑</span></div>
-        </div>
-        <div class="kuaijiefangshi">
-          <div class="kuaijiefangshiIcon"><img height="60px" width="60px" src="Icons/imageres_25.ico"/></div>
-          <div class="kuaijiefangshiName"><span>网络</span></div>
-        </div>
-        <div class="kuaijiefangshi">
-          <div class="kuaijiefangshiIcon"><img height="60px" width="60px" src="Icons/imageres_55.ico"/></div>
-          <div class="kuaijiefangshiName"><span>回收站</span></div>
-        </div>
-        <div class="kuaijiefangshi">
-          <div class="kuaijiefangshiIcon"><img height="60px" width="60px" src="Icons/imageres_1003.ico"/></div>
-          <div class="kuaijiefangshiName"><span>图库</span></div>
-        </div>
-      </div>
-
-      <!-- 第二列桌面图标 -->
-      <div class="zhuomianCol">
-        <div class="kuaijiefangshi" v-bind:style="appNyakoRijiBackBlack" @dblclick="openAppNyakoRiji" @click="clickAppNyakoRiji">
-          <div class="kuaijiefangshiIcon"><img height="60px" width="60px" src="Icons/imageres_1002.ico"/></div>
-          <div class="kuaijiefangshiName"><span>猫猫日记</span></div>
-        </div>
-      </div>
-
-
-      <!-- 猫猫日记app -->
-      <div class="appNyakoRiji" v-if="isShowAppMaomaoRiji">
-        <div class="appBiaotilan">
-          <img height="22px" width="22px" src="Icons/imageres_1002.ico"/>
-          猫猫日记
-          <div class="appClose" @click="closeAppNyakoRiji">关闭</div>
-        </div>
-        <div class="appNeirong">
-          <textarea class="appText">
-    大+hao，i'm is a 🐱🐱。窝制作ing窝のwindows窗口主题の个人web站！
-这里是第贰行
-2022年3月28日，猫猫日记的功能终于完成啦，好累好困睡觉觉！
-          </textarea>
-        </div>
-      </div>
-
-      <!-- 开始菜单 -->
-      <div class="kaishicaidan" v-if="isShowKaishicaidan" > 
-        <div class="zuobiandekuangkuang" ><span>&nbsp;WINDOWS 2000 NYAKO </span></div>
-        <ul class="shangmian">
-          <li>菜单项1</li>
-        </ul>
-        <ul class="zhongjian">
-          <li>菜单项</li>
-          <li>菜单项</li>
-          <li>&nbsp;</li>
-          <li>&nbsp;</li>
-          <li>&nbsp;</li>
-        </ul>
-        <ul class="xiamian">
-          <li>关机</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- 底部任务栏 -->
-    <div class="renwulan">
-      <div class="kaishibutton" v-bind:style="kaishiBackBlack" @click="dakaikaishicaidan">开始</div>
-      <div class="kuaijiefangshi"> 🐱 🐕 🐖 </div>
-
-      <div class="appNyakoRijiRenwulan" v-if="isShowAppMaomaoRiji" >
-        <img height="22px" width="22px" src="Icons/imageres_1002.ico"/>
-          <span>猫猫日记</span>
-        </div>
-
-      <div class="shijian" v-html="nowDate"></div>
-    </div>
-  </div>
-
-  <!-- js -->
-  <script src="js/vue.js"></script>
-  <script src="js/script.js"></script>
-  <script type="text/javascript">
-    var kaishibutton = new Vue({
-        el: '.win',
-        data: {
-            isShowKaishicaidan:false,
-            isShowAppMaomaoRiji:false,
-            nowDate:"",
-            kaishiBackBlack:{
-              background: "rgba(27, 29, 58, 0)",
-            },
-            appNyakoRijiBackBlack:{
-              background: "rgba(27, 29, 58, 0)",
-            },
-        },
-        methods:{
-          // 应用猫猫日记被选中
-            clickAppNyakoRiji:function() {
-              if (this.appNyakoRijiBackBlack.background=="rgba(27, 29, 58, 0.507)") {
-                this.appNyakoRijiBackBlack.background="rgba(27, 29, 58, 0)";
-              } else {
-                this.appNyakoRijiBackBlack.background="rgba(27, 29, 58, 0.507)";
-              }
-            },
-            // 关闭和打开应用猫猫日记
-            closeAppNyakoRiji:function() {
-              this.isShowAppMaomaoRiji=false;
-            },
-            openAppNyakoRiji:function() {
-              this.isShowAppMaomaoRiji=true;
-            },
-            dakaikaishicaidan:function(){
-              if (this.isShowKaishicaidan) {
-                // 如果开关是开着的，则关闭开关并将黑色的背景设置为完全透明
-                this.isShowKaishicaidan=false;
-                this.kaishiBackBlack.background="rgba(27, 29, 58, 0)";
-              } else {
-                //如果开关是关着的,则打开开关并将黑色的背景弄成黑色（打开了开始菜单，按钮为选中状态
-                this.isShowKaishicaidan=true;
-                this.kaishiBackBlack.background="rgba(27, 29, 58, 0.507)";
-              }
-            },
-            currentTime:function() {
-              setInterval(this.formatDate, 500);
-            },
-            formatDate:function() {
-              let date = new Date();
-              let year = date.getFullYear(); // 年
-              let month = date.getMonth() + 1; // 月
-              let day = date.getDate(); // 日
-              let week = date.getDay(); // 星期
-              let weekArr = [ "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六" ];
-              let hour = date.getHours(); // 时
-              hour = hour < 10 ? "0" + hour : hour; // 如果只有一位，则前面补零
-              let minute = date.getMinutes(); // 分
-              minute = minute < 10 ? "0" + minute : minute; // 如果只有一位，则前面补零
-              let second = date.getSeconds(); // 秒
-              second = second < 10 ? "0" + second : second; // 如果只有一位，则前面补零
-              this.nowDate = `${hour}:${minute}:${second} ${weekArr[week]}<br/>${year}/${month}/${day}`;
-            },
-        },
-        mounted:function(){
-          this.currentTime();
-        },
-            // 销毁定时器
-        beforeDestroy:function() {
-          if (this.formatDate) {
-            clearInterval(this.formatDate); // 在Vue实例销毁前，清除时间定时器
-          }
-        }
-    });
-
-    function stop() {
-      return false;
-    }
-    document.oncontextmenu = stop;//禁止右键
-  </script>
-
-
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="viewport" content="user-scalable=no">
+        <link rel="icon" href="icon/icon.png" type="image/png">
+        <link rel="apple-touch-icon" href="icon/icon.png">
+        <link rel="stylesheet" type="text/css" href="fonts/gamefont.css">
+        <title>测试电梯</title>
+    </head>
+    <body style="background-color: black">
+        <script type="text/javascript" src="js/libs/pixi.js"></script>
+        <script type="text/javascript" src="js/libs/pixi-tilemap.js"></script>
+        <script type="text/javascript" src="js/libs/pixi-picture.js"></script>
+        <script type="text/javascript" src="js/libs/fpsmeter.js"></script>
+        <script type="text/javascript" src="js/libs/lz-string.js"></script>
+        <script type="text/javascript" src="js/libs/iphone-inline-video.browser.js"></script>
+        <script type="text/javascript" src="js/rpg_core.js"></script>
+        <script type="text/javascript" src="js/rpg_managers.js"></script>
+        <script type="text/javascript" src="js/rpg_objects.js"></script>
+        <script type="text/javascript" src="js/rpg_scenes.js"></script>
+        <script type="text/javascript" src="js/rpg_sprites.js"></script>
+        <script type="text/javascript" src="js/rpg_windows.js"></script>
+        <script type="text/javascript" src="js/plugins.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
 </html>
